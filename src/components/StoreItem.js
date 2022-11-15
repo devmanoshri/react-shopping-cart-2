@@ -1,8 +1,9 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { formatCurrency } from "../utilities/formatCurrency";
-import { Button } from "react-bootstrap";
+import { CartState } from "../context/ShoppingCartContext";
+
 StoreItem.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
@@ -11,7 +12,13 @@ StoreItem.propTypes = {
 };
 
 export default function StoreItem({ id, name, price, imgUrl }) {
+  // const { id, name, price, imgUrl } = item;
   const quantity = 1;
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
+
   return (
     <Card className="h-100">
       <Card.Img
@@ -27,7 +34,14 @@ export default function StoreItem({ id, name, price, imgUrl }) {
         </Card.Title>
         <div className="mt-auto">
           {quantity === 0 ? (
-            <Button className="w-100">+ Add to Cart</Button>
+            <Button
+              className="w-100"
+              // onClick={() => {
+              //   dispatch({ type: "ADD_TO_CART", payload: item });
+              // }}
+            >
+              + Add to Cart
+            </Button>
           ) : (
             <div className="text-center ">
               <div
