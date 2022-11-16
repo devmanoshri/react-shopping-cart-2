@@ -13,12 +13,13 @@ StoreItem.propTypes = {
 
 export default function StoreItem({ item }) {
   const { id, name, price, imgUrl } = item;
+  const { addToCart } = CartState();
 
   const quantity = 0;
-  const {
-    state: { cart },
-    dispatch,
-  } = CartState();
+  // const {
+  //   state: { cart },
+  //   dispatch,
+  // } = CartState();
 
   return (
     <Card className="h-100">
@@ -37,9 +38,10 @@ export default function StoreItem({ item }) {
           {quantity === 0 ? (
             <Button
               className="w-100"
-              onClick={() => {
-                dispatch({ type: "ADD_TO_CART", payload: item });
-              }}
+              // onClick={() => {
+              //   dispatch({ type: "ADD_TO_CART", payload: item });
+              // }}
+              onClick={console.log(id)}
             >
               + Add to Cart
             </Button>

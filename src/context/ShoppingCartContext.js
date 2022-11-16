@@ -5,16 +5,19 @@ import { storeItems } from "../data/items";
 
 const ShoppingCartContext = createContext();
 
+const initialState = {
+  products: storeItems,
+  ShoppingCartContext: [],
+};
+
 export function ShoppingCartProvider({ children }) {
-  //const [cartItems, setCartItems] = useState([]);
-
-  const [state, dispatch] = useReducer(cartReducer, {
-    products: storeItems,
-    ShoppingCartContext: [],
-  });
-
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+  const addToCart = (id) => {
+    console.log(id);
+    dispatch({ type: "ADD_TO_CART" });
+  };
   return (
-    <ShoppingCartContext.Provider value={{ state, dispatch }}>
+    <ShoppingCartContext.Provider value={{ ...state, addToCart }}>
       {children}
     </ShoppingCartContext.Provider>
   );
