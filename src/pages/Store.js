@@ -12,7 +12,7 @@ export function Store() {
         {storeItems.map((item) => {
           return (
             <Col key={item.id}>
-              <StoreItem {...item} />
+              <StoreItem item={item} />
             </Col>
           );
         })}

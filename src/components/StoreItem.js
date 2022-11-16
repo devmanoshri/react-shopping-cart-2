@@ -11,9 +11,10 @@ StoreItem.propTypes = {
   imgUrl: PropTypes.string,
 };
 
-export default function StoreItem({ id, name, price, imgUrl }) {
-  // const { id, name, price, imgUrl } = item;
-  const quantity = 1;
+export default function StoreItem({ item }) {
+  const { id, name, price, imgUrl } = item;
+
+  const quantity = 0;
   const {
     state: { cart },
     dispatch,
@@ -36,9 +37,9 @@ export default function StoreItem({ id, name, price, imgUrl }) {
           {quantity === 0 ? (
             <Button
               className="w-100"
-              // onClick={() => {
-              //   dispatch({ type: "ADD_TO_CART", payload: item });
-              // }}
+              onClick={() => {
+                dispatch({ type: "ADD_TO_CART", payload: item });
+              }}
             >
               + Add to Cart
             </Button>
